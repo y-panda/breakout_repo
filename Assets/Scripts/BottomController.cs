@@ -22,7 +22,7 @@ public class BottomController : MonoBehaviour {
 
 		}
 	}
-
+	　　
 	void OnCollisionEnter(Collision col){
 		Destroy (col.gameObject);
 		//GameOverの文字表示
