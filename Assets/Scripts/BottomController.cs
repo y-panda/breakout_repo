@@ -8,12 +8,10 @@ public class BottomController : MonoBehaviour {
 	public GameObject gameOver;
 	bool goTitle = false;
 
-	// Use this for initialization
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (goTitle) {
 			//GameOverの文字が表示された状態で画面をクリック
