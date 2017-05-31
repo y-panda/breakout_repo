@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ball : MonoBehaviour {
 	
@@ -25,7 +26,7 @@ public class Ball : MonoBehaviour {
 			gameClear.SendMessage ("Win");
 			//クリックしてタイトル画面へ
 			if (Input.GetMouseButtonDown (0)) {
-				Application.LoadLevel ("title");
+				SceneManager.LoadScene("title");
 			}
 		}
 
