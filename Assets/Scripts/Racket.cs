@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Racket : MonoBehaviour {
 
 	private Vector3 pos;
 	private Vector3 WorldPointPos;
-	private int speed = 1000;
+
+	public Slider slider;
+
 
 	// Use this for initialization
 	void Start () {
@@ -18,27 +22,24 @@ public class Racket : MonoBehaviour {
 		/*this.GetComponent<Rigidbody> ().AddForce (
 			transform.right * Input.GetAxisRaw ("Horizontal") * accel,
 			ForceMode.Impulse);*/
-		pos = Input.mousePosition;
-		//Debug.Log (pos);
+		/*pos = Input.mousePosition;
 		WorldPointPos = Camera.main.ScreenToWorldPoint (pos);
-		//Debug.Log (WorldPointPos);
 
 		// 壁を突き抜けないようにx軸の移動範囲を限定
-
 		if (WorldPointPos.x <= -2.1f) {
-
 			WorldPointPos.x = -2.1f;
 
 		} else if (WorldPointPos.x >= 2.1f) {
-
 			WorldPointPos.x = 2.1f;
-
 		}
 
 		WorldPointPos.y = -3.0f;
-		WorldPointPos.z = 0.0f;
+		WorldPointPos.z = 0.0f;*/
 
-		gameObject.transform.position = WorldPointPos;
+		//gameObject.transform.position = WorldPointPos;
+		gameObject.transform.position =
+			new Vector3(slider.value, gameObject.transform.position.y, gameObject.transform.position.z);
+
 
 	}
 }
