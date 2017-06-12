@@ -6,6 +6,7 @@ public class Racket : MonoBehaviour {
 
 	private Vector3 pos;
 	private Vector3 WorldPointPos;
+	private int speed = 1000;
 
 	// Use this for initialization
 	void Start () {
