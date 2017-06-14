@@ -6,19 +6,22 @@ using UnityEngine.SceneManagement;
 public class Ball : MonoBehaviour {
 	
 	public GameObject gameClear;
-	int speed = 3;
+	int speed = 4;
 	public int blockCt = 20;
 	Rigidbody rb;
 	Vector3 v;
+	Vector3 ballVelocity;
 
 	void Start(){
 		rb = GetComponent<Rigidbody>();
-		rb.AddForce((transform.up + transform.right) * speed, ForceMode.VelocityChange);
-		//rb.AddForce((transform.up) * (-5), ForceMode.VelocityChange);
+		ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
+		//rb.AddForce((transform.up + transform.right) * speed, ForceMode.VelocityChange);
+		rb.AddForce((transform.up) * (1), ForceMode.VelocityChange);
 	}
 
 
 	void Update ()	{
+		GetComponent<Rigidbody> ().velocity = GetComponent<Rigidbody> ().velocity.normalized * 5.0f;
 		Debug.Log (gameObject.GetComponent<Rigidbody>().velocity);
 		//ブロックを全て壊した時
 		if (blockCt == 0) {
@@ -39,24 +42,24 @@ public class Ball : MonoBehaviour {
 	void OnCollisionEnter (Collision col){
 		//ブロックにぶつかるとブロックカウント-1
 		if (col.gameObject.tag == "Block") {
-			blockCt -= 1;
-		}else if(col.gameObject.tag == "Racket"){
-			
-			//ラケットに当たったときに、まっすぐだったら少し横に力をかけてあげる
-			//（上下運動ループを避けるため）
-			if (gameObject.GetComponent<Rigidbody> ().velocity.x <= 5.0f
-				&&gameObject.transform.position.x<=0f) {
-				rb.AddForce((transform.right) * (1f), ForceMode.VelocityChange);
-			}else if(gameObject.GetComponent<Rigidbody> ().velocity.x <= 5.0f
-				&&gameObject.transform.position.x>0f) {
-				rb.AddForce((transform.right) * (-1f), ForceMode.VelocityChange);
+			//blockCt -= 1;
+		} else if (col.gameObject.tag == "Racket") {
+			if (Mathf.Abs(ballVelocity.x)<0.5f) {
+				ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
+				ballVelocity.x += 0.1f;
+				ballVelocity.x *= 5.0f;
+				GetComponent<Rigidbody> ().velocity = ballVelocity;
 			}
 
-			if (gameObject.GetComponent<Rigidbody> ().velocity.y <= 1.5f) {
-				rb.AddForce((transform.up) * (1f), ForceMode.VelocityChange);
+		} else if (col.gameObject.tag == "Wall") {
+			//壁に当たったときに上下に対する速度が遅すぎるとき
+			if (Mathf.Abs(ballVelocity.y)<0.5f) {
+				ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
+				ballVelocity.y += 0.1f;
+				ballVelocity.y *= 5.0f;
+				GetComponent<Rigidbody> ().velocity = ballVelocity;
 			}
-
 		}
-			
 	}
+
 }
