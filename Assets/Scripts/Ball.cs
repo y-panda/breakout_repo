@@ -11,6 +11,7 @@ public class Ball : MonoBehaviour {
 	Rigidbody rb;
 	Vector3 v;
 	Vector3 ballVelocity;
+	public GameDirector gameDirector;
 
 	void Start(){
 		rb = GetComponent<Rigidbody>();
@@ -51,7 +52,7 @@ public class Ball : MonoBehaviour {
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
 			}
 
-		} else if (col.gameObject.tag == "Wall") {
+		} else if (col.gameObject.tag == "SideWall") {
 			//壁に当たったときに上下に対する速度が遅すぎるとき
 			if (Mathf.Abs(ballVelocity.y)<0.5f) {
 				ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
@@ -59,7 +60,12 @@ public class Ball : MonoBehaviour {
 				ballVelocity.y *= 5.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
 			}
+		} else if (col.gameObject.tag == "BottomWall") {
+			SceneManager.LoadScene("stage1");
+			//gameDirector.LossLife();
 		}
+
+
 	}
 
 }
