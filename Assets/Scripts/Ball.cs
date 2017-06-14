@@ -13,11 +13,13 @@ public class Ball : MonoBehaviour {
 
 	void Start(){
 		rb = GetComponent<Rigidbody>();
-		rb.AddForce((transform.up + transform.right) * speed, ForceMode.VelocityChange);
+		//rb.AddForce((transform.up + transform.right) * speed, ForceMode.VelocityChange);
+		rb.AddForce((transform.up) * (-5), ForceMode.VelocityChange);
 	}
 
 
 	void Update ()	{
+		
 		//ブロックを全て壊した時
 		if (blockCt == 0) {
 			//ボールの動きを止める
@@ -38,6 +40,23 @@ public class Ball : MonoBehaviour {
 		//ブロックにぶつかるとブロックカウント-1
 		if (col.gameObject.tag == "Block") {
 			blockCt -= 1;
+		}else if(col.gameObject.tag == "Racket"){
+			Debug.Log (gameObject.GetComponent<Rigidbody>().velocity);
+			//ラケットに当たったときに、まっすぐだったら少し横に力をかけてあげる
+			//（上下運動ループを避けるため）
+			if (gameObject.GetComponent<Rigidbody> ().velocity.x <= 5.0f
+				&&gameObject.transform.position.x<=0f) {
+				rb.AddForce((transform.right) * (1f), ForceMode.VelocityChange);
+			}else if(gameObject.GetComponent<Rigidbody> ().velocity.x <= 5.0f
+				&&gameObject.transform.position.x>0f) {
+				rb.AddForce((transform.right) * (-1f), ForceMode.VelocityChange);
+			}
+
+			if (gameObject.GetComponent<Rigidbody> ().velocity.y <= 1.5f) {
+				rb.AddForce((transform.up) * (1f), ForceMode.VelocityChange);
+			}
+
 		}
+			
 	}
 }
