@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour {
 
 	void Update ()	{
 		GetComponent<Rigidbody> ().velocity = GetComponent<Rigidbody> ().velocity.normalized * 5.0f;
-		Debug.Log (gameObject.GetComponent<Rigidbody>().velocity);
+		//Debug.Log (gameObject.GetComponent<Rigidbody>().velocity);
 		//ブロックを全て壊した時
 		if (blockCt == 0) {
 			//ボールの動きを止める
@@ -66,6 +66,8 @@ public class Ball : MonoBehaviour {
 		} else if (col.gameObject.tag == "BottomWall") {
 			//SceneManager.LoadScene("stage1");
 			gameDirector.LossLife();
+			//gameDirector.GetComponent<GameDirector>().LossLife();
+			//Destroy (gameObject);
 		}
 
 

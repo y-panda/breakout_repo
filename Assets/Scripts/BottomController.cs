@@ -24,9 +24,9 @@ public class BottomController : MonoBehaviour {
 	}
 	　　
 	void OnCollisionEnter(Collision col){
-		Destroy (col.gameObject);
+		//Destroy (col.gameObject);
 		//GameOverの文字表示
-		gameOver.SendMessage("Lose");
-		goTitle = true;//update文の実行
+		//gameOver.SendMessage("Lose");
+		//goTitle = true;//update文の実行
 	}
 }

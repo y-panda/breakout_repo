@@ -9,13 +9,15 @@ public class GameDirector : MonoBehaviour {
 	public Text timerText;
 	public Text lifeText;
 
-	public int playerLife = 3;
+	[System.NonSerialized]
+	public int playerLife=5;
 
 	public GameObject ballPref;
 
 
 	// Use this for initialization
 	void Start () {
+		playerLife = 3;
 		//ボールを生成
 		Instantiate(ballPref, ballPref.transform.position, Quaternion.identity);
 	}
@@ -27,7 +29,9 @@ public class GameDirector : MonoBehaviour {
 	}
 
 	public void LossLife(){
-		playerLife -= 1;
-		lifeText.text = playerLife.ToString ("F0");
+		playerLife--;
+		Debug.Log ("playerLife:"+playerLife);
+		//lifeText.text = playerLife.ToString ();
+		//lifeText.text = "";
 	}
 }
