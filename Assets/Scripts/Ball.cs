@@ -16,8 +16,7 @@ public class Ball : MonoBehaviour {
 	void Start(){
 		rb = GetComponent<Rigidbody>();
 		ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
-		//rb.AddForce((transform.up + transform.right) * speed, ForceMode.VelocityChange);
-		rb.AddForce((transform.up) * (1), ForceMode.VelocityChange);
+		GameStart ();
 	}
 
 
@@ -38,6 +37,10 @@ public class Ball : MonoBehaviour {
 
 	}
 
+	void GameStart(){
+		//rb.AddForce((transform.up + transform.right) * speed, ForceMode.VelocityChange);
+		rb.AddForce((transform.up) * (1), ForceMode.VelocityChange);
+	}
 
 
 	void OnCollisionEnter (Collision col){
@@ -61,8 +64,8 @@ public class Ball : MonoBehaviour {
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
 			}
 		} else if (col.gameObject.tag == "BottomWall") {
-			SceneManager.LoadScene("stage1");
-			//gameDirector.LossLife();
+			//SceneManager.LoadScene("stage1");
+			gameDirector.LossLife();
 		}
 
 

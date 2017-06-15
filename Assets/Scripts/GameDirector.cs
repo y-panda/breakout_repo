@@ -11,9 +11,13 @@ public class GameDirector : MonoBehaviour {
 
 	public int playerLife = 3;
 
+	public GameObject ballPref;
+
+
 	// Use this for initialization
 	void Start () {
-		
+		//ボールを生成
+		Instantiate(ballPref, ballPref.transform.position, Quaternion.identity);
 	}
 	
 	// Update is called once per frame
