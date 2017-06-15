@@ -44,7 +44,7 @@ public class Ball : MonoBehaviour {
 			shootVec = orthoObject.GetComponent<TransformScreenToWorld> ().CalcShootVec (gameObject);
 			//指離したら発射
 		}
-		if (Input.GetMouseButtonUp (0)&&shootIdlingIs) {
+		if (Input.GetMouseButtonUp (0)&&shootIdlingIs&&shootVec.y>0f) {
 			shootIdlingIs = false;
 			lightParent.transform.FindChild ("SearchLight").gameObject.GetComponent<Light> ().spotAngle = 0;
 
