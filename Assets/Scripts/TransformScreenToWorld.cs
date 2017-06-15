@@ -8,6 +8,8 @@ public class TransformScreenToWorld : MonoBehaviour {
 	public float baseWidth = 2160f;
 	public float baseHeight = 3840f;
 
+	public GameObject searchLight;
+
 	Vector3 shootVec;
 
 	Camera orthoCamera;
@@ -41,6 +43,14 @@ public class TransformScreenToWorld : MonoBehaviour {
 		shootVec.y = worldPos.y-tamaObj.transform.position.y;
 		shootVec.z = worldPos.z; //1.2
 		Debug.Log ("発射物から見た目標座標: "+shootVec);
+
+		float dx = shootVec.x;
+		float dy = shootVec.y;
+		float rad = Mathf.Atan2 (dy, dx);
+		Debug.Log ("角度: "+rad*Mathf.Rad2Deg);
+
+		//Debug.Log(searchLight.transform.rotation.z);
+		searchLight.transform.rotation = Quaternion.Euler(0, 0, rad*Mathf.Rad2Deg-90);
 
 		return shootVec;
 	}

@@ -21,8 +21,16 @@ public class Ball : MonoBehaviour {
 	GameObject orthoObject;
 	bool shootIdlingIs = true;
 
+	GameObject lightParent;
+
 	void Start(){
+		
+
 		orthoObject = GameObject.Find ("GameObject");
+		lightParent = GameObject.Find ("LightParent");
+		lightParent.transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
+		lightParent.transform.FindChild ("SearchLight").gameObject.GetComponent<Light> ().spotAngle = 21;
+
 		rb = GetComponent<Rigidbody>();
 		ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
 		BallShoot ();
@@ -30,12 +38,17 @@ public class Ball : MonoBehaviour {
 
 
 	void Update ()	{
-		//発射する
-		if (Input.GetMouseButtonUp (0)&&shootIdlingIs) {
-			shootIdlingIs = false;
+		//タッチしてる間、角度計算する
+		if (Input.GetMouseButton (0)&&shootIdlingIs) {
 			//発射角度を計算
 			shootVec = orthoObject.GetComponent<TransformScreenToWorld> ().CalcShootVec (gameObject);
-			BallShoot ();
+			//指離したら発射
+		}
+		if (Input.GetMouseButtonUp (0)&&shootIdlingIs) {
+			shootIdlingIs = false;
+			lightParent.transform.FindChild ("SearchLight").gameObject.GetComponent<Light> ().spotAngle = 0;
+
+			BallShoot ();				
 		}
 
 		//速度を正規化
