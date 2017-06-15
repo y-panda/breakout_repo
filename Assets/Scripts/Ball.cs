@@ -7,21 +7,19 @@ using UnityEngine.UI;
 public class Ball : MonoBehaviour {
 	
 	public GameObject gameClear;
-	int speed = 4;
+	float maxSpeed = 4f;
 	public int blockCt = 20;
 	Rigidbody rb;
-	Vector3 v;
+
 	Vector3 ballVelocity;
-	public GameObject gameDirector;
+
 
 	public float baseWidth = 2160f;
 	public float baseHeight = 3840f;
-	float touchX;
-	float touchY;
 	Vector3 shootVec;
 
 	GameObject orthoObject;
-
+	bool shootIdlingIs = true;
 
 	void Start(){
 		orthoObject = GameObject.Find ("GameObject");
@@ -33,15 +31,15 @@ public class Ball : MonoBehaviour {
 
 	void Update ()	{
 		//発射する
-		if (Input.GetMouseButtonDown (0)) {
+		if (Input.GetMouseButtonDown (0)&&shootIdlingIs) {
+			shootIdlingIs = false;
 			//発射角度を計算
 			shootVec = orthoObject.GetComponent<TransformScreenToWorld> ().CalcShootVec (gameObject);
 			BallShoot ();
 		}
 
-
-		GetComponent<Rigidbody> ().velocity = GetComponent<Rigidbody> ().velocity.normalized * 5.0f;
-		//Debug.Log (gameObject.GetComponent<Rigidbody>().velocity);
+		//速度を正規化
+		GetComponent<Rigidbody> ().velocity = GetComponent<Rigidbody> ().velocity.normalized * maxSpeed;
 		//ブロックを全て壊した時
 		if (blockCt == 0) {
 			//ボールの動きを止める
