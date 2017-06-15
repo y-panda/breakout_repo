@@ -20,36 +20,25 @@ public class GameDirector : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//GameStart ();
+		GameStart ();
 	}
 
 	//ゲーム開始
 	void GameStart(){
 		newBallPos = racket.transform.position;
-		newBallPos.y += 0.5f;
-		//ボールを生成
-		Instantiate(ballPref, newBallPos, Quaternion.identity);
+		newBallPos.y += 0.5f; // ラケットの少し上にボールの座標を設定
+		Instantiate(ballPref, newBallPos, Quaternion.identity);//ボールを生成
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-
-
-		countTime += Time.deltaTime; //スタートしてからの秒数
+		//スタートしてからの秒数
+		countTime += Time.deltaTime; 
 		timerText.text = countTime.ToString("F1");
 	}
+		
 
-	public void LossLife(){
-		//playerLife--;
-		Debug.Log ("playerLife:"+playerLife);
-
-		//lifeText.text = playerLife.ToString();
-		lifeText.text = "aaaa";
-
-	}
-
-
+	// ボールが1番下の床に当たったときの処理
 	void OnCollisionEnter (Collision col){
 
 		if (col.gameObject.tag == "Ball") {
