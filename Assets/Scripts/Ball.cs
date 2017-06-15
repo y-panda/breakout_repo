@@ -31,7 +31,7 @@ public class Ball : MonoBehaviour {
 
 	void Update ()	{
 		//発射する
-		if (Input.GetMouseButtonDown (0)&&shootIdlingIs) {
+		if (Input.GetMouseButtonUp (0)&&shootIdlingIs) {
 			shootIdlingIs = false;
 			//発射角度を計算
 			shootVec = orthoObject.GetComponent<TransformScreenToWorld> ().CalcShootVec (gameObject);
