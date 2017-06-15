@@ -13,14 +13,14 @@ public class BottomController : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (goTitle) {
+		/*if (goTitle) {
 			//GameOverの文字が表示された状態で画面をクリック
 			if(Input.GetMouseButtonDown (0)){
 				//Application.LoadLevel ("title");//タイトル画面へ遷移
 				SceneManager.LoadScene("title");
 			}
 
-		}
+		}*/
 	}
 	　　
 	void OnCollisionEnter(Collision col){

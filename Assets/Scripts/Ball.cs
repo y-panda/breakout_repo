@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
 	
@@ -11,12 +12,14 @@ public class Ball : MonoBehaviour {
 	Rigidbody rb;
 	Vector3 v;
 	Vector3 ballVelocity;
-	public GameDirector gameDirector;
+	public GameObject gameDirector;
+
+
 
 	void Start(){
 		rb = GetComponent<Rigidbody>();
 		ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
-		GameStart ();
+		//BallShoot ();
 	}
 
 
@@ -37,9 +40,9 @@ public class Ball : MonoBehaviour {
 
 	}
 
-	void GameStart(){
+	void BallShoot(){
 		//rb.AddForce((transform.up + transform.right) * speed, ForceMode.VelocityChange);
-		rb.AddForce((transform.up) * (1), ForceMode.VelocityChange);
+		//rb.AddForce((transform.up) * (1), ForceMode.VelocityChange);
 	}
 
 
@@ -63,13 +66,7 @@ public class Ball : MonoBehaviour {
 				ballVelocity.y *= 5.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
 			}
-		} else if (col.gameObject.tag == "BottomWall") {
-			//SceneManager.LoadScene("stage1");
-			gameDirector.LossLife();
-			//gameDirector.GetComponent<GameDirector>().LossLife();
-			//Destroy (gameObject);
 		}
-
 
 	}
 
