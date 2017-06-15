@@ -14,16 +14,41 @@ public class Ball : MonoBehaviour {
 	Vector3 ballVelocity;
 	public GameObject gameDirector;
 
+	public float baseWidth = 2160f;
+	public float baseHeight = 3840f;
+	float touchX;
+	float touchY;
+	Vector3 shootVec;
+
 
 
 	void Start(){
 		rb = GetComponent<Rigidbody>();
 		ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
-		//BallShoot ();
+		BallShoot ();
 	}
 
 
 	void Update ()	{
+		/*touchX = baseWidth *
+			(Input.mousePosition.x / Screen.width)-(baseWidth/2);
+		touchY = baseHeight *
+			(Input.mousePosition.y / Screen.height)-(baseHeight/2);
+		Debug.Log("( "+touchX*(3f/1080f)+" , "+touchY*(5f/1920f)+" )");*/
+		//Debug.Log("( "+touchX+" , "+touchY+" )");
+
+		Camera orthoCamera = gameObject.GetComponent<Camera> ();
+
+		//Debug.Log("( "+Input.mousePosition.x+" , "+Input.mousePosition.y+" )");
+
+		Vector3 screenPos = Input.mousePosition;
+		//Debug.Log (screenPos);
+		Vector3 worldPos = orthoCamera.ScreenToWorldPoint(screenPos);
+		Debug.Log (worldPos);
+		//Vector3 worldPos2 = Camera.main.ViewportToWorldPoint(worldPos);
+		//Debug.Log (worldPos2);
+
+
 		GetComponent<Rigidbody> ().velocity = GetComponent<Rigidbody> ().velocity.normalized * 5.0f;
 		//Debug.Log (gameObject.GetComponent<Rigidbody>().velocity);
 		//ブロックを全て壊した時
@@ -41,8 +66,16 @@ public class Ball : MonoBehaviour {
 	}
 
 	void BallShoot(){
+		/*float dx = touchX - gameObject.transform.position.x;
+		float dy = touchY - gameObject.transform.position.y;
+		float rad = Mathf.Atan2 (dy, dx);*/
+		//Debug.Log (gameObject.transform.position);
+
+		shootVec = new Vector3 (2.1f, -2.1f, 0f);
+		//shootVec = new Vector3 (touchX*(3f/1080f), touchY*(5f/1920f), 0f);
 		//rb.AddForce((transform.up + transform.right) * speed, ForceMode.VelocityChange);
 		//rb.AddForce((transform.up) * (1), ForceMode.VelocityChange);
+		//rb.AddForce((shootVec) * (1f), ForceMode.VelocityChange);
 	}
 
 

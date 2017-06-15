@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\Racket.cs" />
      <Compile Include="Assets\Scripts\SceneLoadScript.cs" />
+     <Compile Include="Assets\Scripts\TransformScreenToWorld.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
