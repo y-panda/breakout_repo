@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class GameDirector : MonoBehaviour {
 
-	float countTime = 0.0f;
+	bool gamePlayingIs = true;
+	float countTime = 180.0f;
+
 	public Text timerText;
 	public Text lifeText;
-	public Text gameResult;
+	public Text gameResultText;
+	public Text gameScoreText;
 
 	[System.NonSerialized]
 	public int playerLife=5;
@@ -16,7 +19,7 @@ public class GameDirector : MonoBehaviour {
 	public GameObject ballPref;
 	public GameObject racket;
 	Vector3 newBallPos;
-
+	//ライトはz=-1.7
 
 	void Start () {
 		GameStart ();
@@ -33,13 +36,18 @@ public class GameDirector : MonoBehaviour {
 	
 	void Update () {
 		//スタートしてからの秒数
-		countTime += Time.deltaTime; 
-		timerText.text = countTime.ToString("F1");
+		if (gamePlayingIs) {
+			countTime -= Time.deltaTime; 
+			timerText.text = countTime.ToString("F1");	
+		}
+
 	}
 
 
 	public void GameClear(){
-		gameResult.text = "財宝獲得！クリア！";
+		gamePlayingIs = false;
+		gameResultText.text = "財宝獲得！クリア！";
+		gameScoreText.text = "スコア:" + (countTime * 10f).ToString ("F0");
 	}
 
 	// ボールが1番下の床に当たったときの処理

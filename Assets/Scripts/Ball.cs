@@ -75,6 +75,7 @@ public class Ball : MonoBehaviour {
 
 	void BallShoot(){
 		rb.AddForce((shootVec) * (1f), ForceMode.VelocityChange);
+		//rb.AddForce((transform.right) * (1f), ForceMode.VelocityChange);
 	}
 
 
@@ -84,19 +85,25 @@ public class Ball : MonoBehaviour {
 		if (col.gameObject.tag == "Block") {
 			//blockCt -= 1;
 		} else if (col.gameObject.tag == "Racket") {
-			if (Mathf.Abs (ballVelocity.x) < 0.5f) {
+			if (Mathf.Abs (ballVelocity.x) < 1.0f) {
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
-				ballVelocity.x += 0.1f;
+				ballVelocity.x += 1.0f;
 				ballVelocity.x *= 5.0f;
+				GetComponent<Rigidbody> ().velocity = ballVelocity;
+			}
+			if (Mathf.Abs (ballVelocity.y) < 1.5f) {
+				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
+				ballVelocity.y += 1.0f;
+				ballVelocity.y *= 5.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
 			}
 
 		} else if (col.gameObject.tag == "SideWall") {
 			//壁に当たったときに上下に対する速度が遅すぎるとき
-			if (Mathf.Abs (ballVelocity.y) < 0.5f) {
+			if (Mathf.Abs (ballVelocity.y) < 1.0f) {
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
-				ballVelocity.y += 0.1f;
-				ballVelocity.y *= 6.0f;
+				ballVelocity.y += 1.0f;
+				ballVelocity.y *= 5.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
 				Debug.Log (">>>壁に当たった！");
 			}
