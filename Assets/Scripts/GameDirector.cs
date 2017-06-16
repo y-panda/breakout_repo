@@ -17,20 +17,19 @@ public class GameDirector : MonoBehaviour {
 	Vector3 newBallPos;
 
 
-
-	// Use this for initialization
 	void Start () {
 		GameStart ();
 	}
 
 	//ゲーム開始
 	void GameStart(){
+		racket.GetComponent<Racket> ().SetSliderValue (); //スライダーの位置を固定
+
 		newBallPos = racket.transform.position;
 		newBallPos.y += 0.5f; // ラケットの少し上にボールの座標を設定
 		Instantiate(ballPref, newBallPos, Quaternion.identity);//ボールを生成
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		//スタートしてからの秒数
 		countTime += Time.deltaTime; 
@@ -40,7 +39,6 @@ public class GameDirector : MonoBehaviour {
 
 	// ボールが1番下の床に当たったときの処理
 	void OnCollisionEnter (Collision col){
-
 		if (col.gameObject.tag == "Ball") {
 			Debug.Log ("playerLife:"+playerLife);
 			playerLife--;

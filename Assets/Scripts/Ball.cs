@@ -10,7 +10,6 @@ public class Ball : MonoBehaviour {
 	float maxSpeed = 4f;
 	public int blockCt = 20;
 	Rigidbody rb;
-
 	Vector3 ballVelocity;
 
 
@@ -22,11 +21,12 @@ public class Ball : MonoBehaviour {
 	bool shootIdlingIs = true;
 
 	GameObject lightParent;
+	GameObject racket;
 
 	void Start(){
-		
-
+		racket = GameObject.Find ("Racket");
 		orthoObject = GameObject.Find ("GameObject");
+		// サーチライトの電気をつける
 		lightParent = GameObject.Find ("LightParent");
 		lightParent.transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
 		lightParent.transform.FindChild ("SearchLight").gameObject.GetComponent<Light> ().spotAngle = 21;
@@ -40,12 +40,16 @@ public class Ball : MonoBehaviour {
 	void Update ()	{
 		//タッチしてる間、角度計算する
 		if (Input.GetMouseButton (0)&&shootIdlingIs) {
+			racket.GetComponent<Racket> ().moveModeIs = false;
 			//発射角度を計算
 			shootVec = orthoObject.GetComponent<TransformScreenToWorld> ().CalcShootVec (gameObject);
-			//指離したら発射
+
 		}
+		//指離したら発射
 		if (Input.GetMouseButtonUp (0)&&shootIdlingIs&&shootVec.y>0f) {
 			shootIdlingIs = false;
+			racket.GetComponent<Racket> ().moveModeIs = true; //ラケットの操作可能にする
+			//サーチライトを消す
 			lightParent.transform.FindChild ("SearchLight").gameObject.GetComponent<Light> ().spotAngle = 0;
 
 			BallShoot ();				
@@ -53,6 +57,7 @@ public class Ball : MonoBehaviour {
 
 		//速度を正規化
 		GetComponent<Rigidbody> ().velocity = GetComponent<Rigidbody> ().velocity.normalized * maxSpeed;
+
 		//ブロックを全て壊した時
 		if (blockCt == 0) {
 			//ボールの動きを止める
@@ -67,9 +72,11 @@ public class Ball : MonoBehaviour {
 
 	}
 
+
 	void BallShoot(){
 		rb.AddForce((shootVec) * (1f), ForceMode.VelocityChange);
 	}
+
 
 
 	void OnCollisionEnter (Collision col){
@@ -89,8 +96,9 @@ public class Ball : MonoBehaviour {
 			if (Mathf.Abs(ballVelocity.y)<0.5f) {
 				ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
 				ballVelocity.y += 0.1f;
-				ballVelocity.y *= 5.0f;
+				ballVelocity.y *= 6.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
+				Debug.Log (">>>壁に当たった！");
 			}
 		}
 
