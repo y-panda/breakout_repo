@@ -84,8 +84,8 @@ public class Ball : MonoBehaviour {
 		if (col.gameObject.tag == "Block") {
 			//blockCt -= 1;
 		} else if (col.gameObject.tag == "Racket") {
-			if (Mathf.Abs(ballVelocity.x)<0.5f) {
-				ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
+			if (Mathf.Abs (ballVelocity.x) < 0.5f) {
+				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
 				ballVelocity.x += 0.1f;
 				ballVelocity.x *= 5.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
@@ -93,13 +93,15 @@ public class Ball : MonoBehaviour {
 
 		} else if (col.gameObject.tag == "SideWall") {
 			//壁に当たったときに上下に対する速度が遅すぎるとき
-			if (Mathf.Abs(ballVelocity.y)<0.5f) {
-				ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
+			if (Mathf.Abs (ballVelocity.y) < 0.5f) {
+				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
 				ballVelocity.y += 0.1f;
 				ballVelocity.y *= 6.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
 				Debug.Log (">>>壁に当たった！");
 			}
+		} else if (col.gameObject.tag == "Treasure") {
+			Destroy (gameObject);
 		}
 
 	}

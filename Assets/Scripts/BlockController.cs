@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BlockController : MonoBehaviour {
 
+	public GameObject gameDirector;
+
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,7 +20,14 @@ public class BlockController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 
-		Destroy(gameObject);
+		if(gameObject.tag == "Block"){
+			Destroy(gameObject);
+		}else if(gameObject.tag == "Treasure"){
+			Destroy(gameObject);
+			gameDirector.GetComponent<GameDirector> ().GameClear ();
+		}
+
+
 
 	}
 }

@@ -8,6 +8,7 @@ public class GameDirector : MonoBehaviour {
 	float countTime = 0.0f;
 	public Text timerText;
 	public Text lifeText;
+	public Text gameResult;
 
 	[System.NonSerialized]
 	public int playerLife=5;
@@ -35,7 +36,11 @@ public class GameDirector : MonoBehaviour {
 		countTime += Time.deltaTime; 
 		timerText.text = countTime.ToString("F1");
 	}
-		
+
+
+	public void GameClear(){
+		gameResult.text = "財宝獲得！クリア！";
+	}
 
 	// ボールが1番下の床に当たったときの処理
 	void OnCollisionEnter (Collision col){

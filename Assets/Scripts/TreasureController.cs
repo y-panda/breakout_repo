@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class SceneLoadScript : MonoBehaviour {
+public class TreasureController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +13,4 @@ public class SceneLoadScript : MonoBehaviour {
 	void Update () {
 		
 	}
-
-	public void SceneLoad (){
-		SceneManager.LoadScene("stage1");
-	}
-
 }

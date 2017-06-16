@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Racket.cs" />
      <Compile Include="Assets\Scripts\SceneLoadScript.cs" />
      <Compile Include="Assets\Scripts\TransformScreenToWorld.cs" />
+     <Compile Include="Assets\Scripts\TreasureController.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
