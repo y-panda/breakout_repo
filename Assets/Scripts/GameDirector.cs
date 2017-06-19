@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameDirector : MonoBehaviour {
 
 	bool gamePlayingIs = true;
-	float countTime = 180.0f;
+	float countTime = 180.0f; //制限時間
 
 	public Text timerText;
 	public Text lifeText;
@@ -39,6 +39,10 @@ public class GameDirector : MonoBehaviour {
 		if (gamePlayingIs) {
 			countTime -= Time.deltaTime; 
 			timerText.text = countTime.ToString("F1");	
+
+			if (countTime<=0f) { //時間切れ
+				GameOver ();
+			}
 		}
 
 	}
@@ -46,8 +50,14 @@ public class GameDirector : MonoBehaviour {
 
 	public void GameClear(){
 		gamePlayingIs = false;
-		gameResultText.text = "財宝獲得！クリア！";
+		gameResultText.text = "宝石獲得！クリア！";
 		gameScoreText.text = "スコア:" + (countTime * 10f).ToString ("F0");
+	}
+
+	public void GameOver(){
+		gamePlayingIs = false;
+		racket.GetComponent<Racket> ().moveModeIs=false; //バーを固定
+		gameResultText.text = "ゲームオーバー…";
 	}
 
 	// ボールが1番下の床に当たったときの処理

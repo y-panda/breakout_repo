@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 4c910ec71bcad1b43b4a6b9b4a177ebd
+timeCreated: 1497602504
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: 7barSPBd
+  fontNames:
+  - 7barSPBd
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -21,6 +21,7 @@ public class BlockController : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 
 		if(gameObject.tag == "Block"){
+			//Handheld.Vibrate ();//振動
 			Destroy(gameObject);
 		}else if(gameObject.tag == "Treasure"){
 			Destroy(gameObject);

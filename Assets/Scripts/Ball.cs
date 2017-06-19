@@ -85,7 +85,7 @@ public class Ball : MonoBehaviour {
 		if (col.gameObject.tag == "Block") {
 			//blockCt -= 1;
 		} else if (col.gameObject.tag == "Racket") {
-			if (Mathf.Abs (ballVelocity.x) < 1.0f) {
+			if (Mathf.Abs (ballVelocity.x) < 2.0f) {
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
 				ballVelocity.x += 1.0f;
 				ballVelocity.x *= 5.0f;
