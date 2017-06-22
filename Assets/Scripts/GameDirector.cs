@@ -27,10 +27,13 @@ public class GameDirector : MonoBehaviour {
 	//ライトはz=-1.7
 
 	AudioSource clearSound;
+	AudioSource bgmSound;
 
 
 	void Start () {
-		clearSound = gameObject.GetComponent<AudioSource> ();
+		AudioSource[] audioSources = gameObject.GetComponents<AudioSource> ();
+		clearSound = audioSources[0];
+		bgmSound = audioSources [1];
 		ClearPanel.SetActive (false);
 		GameStart ();
 	}
@@ -59,6 +62,7 @@ public class GameDirector : MonoBehaviour {
 
 
 	public void GameClear(){
+		bgmSound.Stop ();
 		clearSound.PlayOneShot (clearSound.clip);
 		gamePlayingIs = false;
 		ClearPanel.SetActive (true);
