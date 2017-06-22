@@ -86,10 +86,15 @@ public class Ball : MonoBehaviour {
 		if (col.gameObject.tag == "Block") {
 			//blockCt -= 1;
 		} else if (col.gameObject.tag == "Racket") {
-			if (Mathf.Abs (ballVelocity.x) < 2.0f) {
+			Debug.Log (ballVelocity);
+			if (Mathf.Abs (ballVelocity.x) < 1.0f) {
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
-				ballVelocity.x += 1.0f;
-				ballVelocity.x *= 5.0f;
+				if (ballVelocity.x >= 0f) {
+					ballVelocity.x += 1.0f;
+				} else {
+					ballVelocity.y -= 1.0f;
+				}
+				ballVelocity.x *= 2.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
 			}
 			if (Mathf.Abs (ballVelocity.y) < 1.5f) {
@@ -100,13 +105,21 @@ public class Ball : MonoBehaviour {
 			}
 
 		} else if (col.gameObject.tag == "SideWall") {
+			Debug.Log (">>>壁に当たった！");
+			Debug.Log (ballVelocity);
 			//壁に当たったときに上下に対する速度が遅すぎるとき
-			if (Mathf.Abs (ballVelocity.y) < 1.0f) {
+			if (Mathf.Abs (ballVelocity.y) < 40.0f) {
+				Debug.Log (">>>速度調整します");
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
-				ballVelocity.y += 1.0f;
+				if (ballVelocity.y >= 0f) {
+					ballVelocity.y += 2.0f;
+				} else {
+					ballVelocity.y -= 2.0f;
+				}
+
 				ballVelocity.y *= 5.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
-				Debug.Log (">>>壁に当たった！");
+				Debug.Log (">>>"+ballVelocity);
 			}
 		} else if (col.gameObject.tag == "Treasure") {
 			Destroy (gameObject);

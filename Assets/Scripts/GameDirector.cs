@@ -63,7 +63,7 @@ public class GameDirector : MonoBehaviour {
 	// ボールが1番下の床に当たったときの処理
 	void OnCollisionEnter (Collision col){
 		if (col.gameObject.tag == "Ball") {
-			Debug.Log ("playerLife:"+playerLife);
+			//Debug.Log ("playerLife:"+playerLife);
 			playerLife--;
 			lifeText.text = playerLife.ToString();
 			//SceneManager.LoadScene("stage1");

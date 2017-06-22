@@ -16,20 +16,23 @@ public class BlockController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(gameObject.tag == "Treasure"){
-			transform.Rotate(new Vector3(0, 0.3f, 0));
+			transform.Rotate(new Vector3(0, 0.5f, 0));
 		}
 	}
 
 	void OnCollisionEnter(Collision col) {
 
-		if(gameObject.tag == "Block"){
+		/*if(gameObject.tag == "Block"){
 			//Handheld.Vibrate ();//振動
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}else if(gameObject.tag == "Treasure"){
 			Destroy(gameObject);
 			gameDirector.GetComponent<GameDirector> ().GameClear ();
+		}*/
+		if(col.gameObject.tag == "Ball"){
+			Destroy(gameObject);
+			gameDirector.GetComponent<GameDirector> ().GameClear ();
 		}
-
 
 
 	}
