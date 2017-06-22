@@ -15,6 +15,8 @@ public class GameDirector : MonoBehaviour {
 	public Text gameResultText;
 	public Text gameScoreText;
 	public GameObject ClearPanel;
+	public GameObject ClearTreasure;
+
 
 	[System.NonSerialized]
 	public int playerLife=5;
@@ -55,6 +57,7 @@ public class GameDirector : MonoBehaviour {
 	public void GameClear(){
 		gamePlayingIs = false;
 		ClearPanel.SetActive (true);
+		ClearTreasure.SetActive (true);
 		gameResultText.text = "宝石獲得！クリア！";
 		gameScoreText.text = "スコア:" + (countTime * 10f).ToString ("F0");
 	}
