@@ -15,7 +15,9 @@ public class BlockController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(gameObject.tag == "Treasure"){
+			transform.Rotate(new Vector3(0, 0.3f, 0));
+		}
 	}
 
 	void OnCollisionEnter(Collision col) {
