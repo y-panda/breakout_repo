@@ -24,7 +24,8 @@ public class Ball : MonoBehaviour {
 	GameObject racket;
 
 	void Start(){
-		racket = GameObject.Find ("Racket");
+		//racket = GameObject.Find ("Racket");
+		racket = GameObject.Find ("bar");
 		orthoObject = GameObject.Find ("GameObject");
 		// サーチライトの電気をつける
 		lightParent = GameObject.Find ("LightParent");
