@@ -19,4 +19,6 @@ public class SceneLoadScript : MonoBehaviour {
 		SceneManager.LoadScene("stage1");
 	}
 
+
+
 }

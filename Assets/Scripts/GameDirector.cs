@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameDirector : MonoBehaviour {
 
@@ -12,6 +14,7 @@ public class GameDirector : MonoBehaviour {
 	public Text lifeText;
 	public Text gameResultText;
 	public Text gameScoreText;
+	public GameObject ClearPanel;
 
 	[System.NonSerialized]
 	public int playerLife=5;
@@ -22,6 +25,7 @@ public class GameDirector : MonoBehaviour {
 	//ライトはz=-1.7
 
 	void Start () {
+		ClearPanel.SetActive (false);
 		GameStart ();
 	}
 
@@ -50,14 +54,21 @@ public class GameDirector : MonoBehaviour {
 
 	public void GameClear(){
 		gamePlayingIs = false;
+		ClearPanel.SetActive (true);
 		gameResultText.text = "宝石獲得！クリア！";
 		gameScoreText.text = "スコア:" + (countTime * 10f).ToString ("F0");
 	}
 
 	public void GameOver(){
 		gamePlayingIs = false;
+
 		racket.GetComponent<Racket> ().moveModeIs=false; //バーを固定
 		gameResultText.text = "ゲームオーバー…";
+	}
+
+
+	public void GoNextStage(){
+		SceneManager.LoadScene("stage1");
 	}
 
 	// ボールが1番下の床に当たったときの処理
