@@ -22,6 +22,7 @@ public class Ball : MonoBehaviour {
 
 	GameObject lightParent;
 	GameObject racket;
+	public GameObject burstPrefab;
 
 	void Start(){
 		//racket = GameObject.Find ("Racket");
@@ -85,6 +86,7 @@ public class Ball : MonoBehaviour {
 		//ブロックにぶつかるとブロックカウント-1
 		if (col.gameObject.tag == "Block") {
 			//blockCt -= 1;
+			Instantiate (burstPrefab, col.gameObject.transform.position, Quaternion.identity);
 		} else if (col.gameObject.tag == "Racket") {
 			Debug.Log (ballVelocity);
 			if (Mathf.Abs (ballVelocity.x) < 1.0f) {

@@ -5,12 +5,12 @@ using UnityEngine;
 public class BlockController : MonoBehaviour {
 
 	public GameObject gameDirector;
-
+	private ParticleSystem bursteffect;
 
 
 	// Use this for initialization
 	void Start () {
-		
+		bursteffect = this.GetComponent<ParticleSystem> ();
 	}
 	
 	// Update is called once per frame
@@ -30,7 +30,9 @@ public class BlockController : MonoBehaviour {
 			gameDirector.GetComponent<GameDirector> ().GameClear ();
 		}*/
 		if(col.gameObject.tag == "Ball"){
+			//bursteffect.Play ();
 			Destroy(gameObject);
+
 			gameDirector.GetComponent<GameDirector> ().GameClear ();
 		}
 
