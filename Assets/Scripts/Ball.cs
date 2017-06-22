@@ -23,6 +23,8 @@ public class Ball : MonoBehaviour {
 	GameObject lightParent;
 	GameObject racket;
 	public GameObject burstPrefab;
+	AudioSource sound01;
+
 
 	void Start(){
 		//racket = GameObject.Find ("Racket");
@@ -32,6 +34,8 @@ public class Ball : MonoBehaviour {
 		lightParent = GameObject.Find ("LightParent");
 		lightParent.transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
 		lightParent.transform.FindChild ("SearchLight").gameObject.GetComponent<Light> ().spotAngle = 21;
+
+		sound01 = gameObject.GetComponent<AudioSource> ();
 
 		rb = GetComponent<Rigidbody>();
 		ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
@@ -85,8 +89,10 @@ public class Ball : MonoBehaviour {
 	void OnCollisionEnter (Collision col){
 		//ブロックにぶつかるとブロックカウント-1
 		if (col.gameObject.tag == "Block") {
-			//blockCt -= 1;
+			sound01.PlayOneShot(sound01.clip);
+			//砂煙を発生
 			Instantiate (burstPrefab, col.gameObject.transform.position, Quaternion.identity);
+
 		} else if (col.gameObject.tag == "Racket") {
 			Debug.Log (ballVelocity);
 			if (Mathf.Abs (ballVelocity.x) < 1.0f) {

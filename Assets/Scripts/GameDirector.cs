@@ -26,7 +26,11 @@ public class GameDirector : MonoBehaviour {
 	Vector3 newBallPos;
 	//ライトはz=-1.7
 
+	AudioSource clearSound;
+
+
 	void Start () {
+		clearSound = gameObject.GetComponent<AudioSource> ();
 		ClearPanel.SetActive (false);
 		GameStart ();
 	}
@@ -55,6 +59,7 @@ public class GameDirector : MonoBehaviour {
 
 
 	public void GameClear(){
+		clearSound.PlayOneShot (clearSound.clip);
 		gamePlayingIs = false;
 		ClearPanel.SetActive (true);
 		ClearTreasure.SetActive (true);
@@ -64,7 +69,6 @@ public class GameDirector : MonoBehaviour {
 
 	public void GameOver(){
 		gamePlayingIs = false;
-
 		racket.GetComponent<Racket> ().moveModeIs=false; //バーを固定
 		gameResultText.text = "ゲームオーバー…";
 	}
