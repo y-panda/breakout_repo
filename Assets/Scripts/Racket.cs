@@ -7,11 +7,15 @@ using UnityEngine.UI;
 public class Racket : MonoBehaviour {
 
 	private Vector3 pos;
+	private Vector3 WorldPointPos;
 
 	public Slider slider;
-	float sliderValue = 0f;
+	float startPos = 0f;
 
 	public bool moveModeIs;
+
+	public GameObject orthoObject;
+
 
 	// Use this for initialization
 	void Start () {
@@ -20,16 +24,30 @@ public class Racket : MonoBehaviour {
 
 
 	void Update () {		
-		if (!moveModeIs) {
-			slider.value = sliderValue;
+		if (moveModeIs) {
+			WorldPointPos = orthoObject.GetComponent<TransformScreenToWorld> ().CalcCarPos (gameObject);
+
+			// 壁を突き抜けないようにx軸の移動範囲を限定
+			if (WorldPointPos.x <= -2.2f) {
+				WorldPointPos.x = -2.2f;
+			} else if (WorldPointPos.x >= 2.2f) {
+				WorldPointPos.x = 2.2f;
+			}
+
+			//y軸とz軸は固定
+			WorldPointPos.y = -3f;
+			WorldPointPos.z = 1.21f;
+
+			// ワールド座標をPlayer位置へ変換
+			gameObject.transform.position = WorldPointPos;
+			//gameObject.transform.position = pos;
 		}
-		pos = gameObject.transform.position;
-		pos.x = slider.value;
-		gameObject.transform.position = pos;
+
+
 	}
 
 	//スライダーの固定位置を決定する
-	public void SetSliderValue(){
-		sliderValue = slider.value;
+	public void SetPos(){
+		startPos = gameObject.transform.position.x;
 	}
 }

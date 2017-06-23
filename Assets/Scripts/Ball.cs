@@ -98,11 +98,11 @@ public class Ball : MonoBehaviour {
 			}
 
 		} else if (col.gameObject.tag == "SideWall") {
-			Debug.Log (">>>壁に当たった！");
-			Debug.Log (ballVelocity);
+			//Debug.Log (">>>壁に当たった！");
+			//Debug.Log (ballVelocity);
 			//壁に当たったときに上下に対する速度が遅すぎるとき
 			if (Mathf.Abs (ballVelocity.y) < 40.0f) {
-				Debug.Log (">>>速度調整します");
+				//Debug.Log (">>>速度調整します");
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
 				if (ballVelocity.y == 0f) {
 					ballVelocity.y += 1.0f;
@@ -110,7 +110,7 @@ public class Ball : MonoBehaviour {
 
 				ballVelocity.y *= 5.0f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
-				Debug.Log (">>>"+ballVelocity);
+				//Debug.Log (">>>"+ballVelocity);
 			}
 		} else if (col.gameObject.tag == "Treasure") {
 			Destroy (gameObject);
