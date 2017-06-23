@@ -74,7 +74,7 @@ public class Ball : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col){
 		
-		if (col.gameObject.tag == "Block") {
+		if (col.gameObject.tag == "Block"||col.gameObject.tag == "Hard2Block") {
 			burnSound.PlayOneShot(burnSound.clip);
 			//砂煙を発生
 			Instantiate (burstPrefab, col.gameObject.transform.position, Quaternion.identity);
