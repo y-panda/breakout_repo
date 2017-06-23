@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Racket : MonoBehaviour {
 
 	private Vector3 pos;
-	private Vector3 WorldPointPos;
 
 	public Slider slider;
 	float sliderValue = 0f;
@@ -25,8 +24,12 @@ public class Racket : MonoBehaviour {
 		if (!moveModeIs) {
 			slider.value = sliderValue;
 		}
-		gameObject.transform.position =
+		pos = gameObject.transform.position;
+		pos.x = slider.value;
+		gameObject.transform.position = pos;
+		/*gameObject.transform.position =
 			new Vector3(slider.value, gameObject.transform.position.y, gameObject.transform.position.z);
+		*/
 
 	}
 

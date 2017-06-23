@@ -50,7 +50,6 @@
      <Compile Include="Assets\GemExample\Scripts\Orbit.cs" />
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\BlockController.cs" />
-     <Compile Include="Assets\Scripts\BottomController.cs" />
      <Compile Include="Assets\Scripts\GameDirector.cs" />
      <Compile Include="Assets\Scripts\ParticleManager.cs" />
      <Compile Include="Assets\Scripts\Racket.cs" />
