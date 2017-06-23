@@ -84,6 +84,7 @@ public class GameDirector : MonoBehaviour {
 	// ボールが1番下の床に当たったときの処理
 	void OnCollisionEnter (Collision col){
 		if (col.gameObject.tag == "Ball") {
+			countTime -= 15;
 			playerLife--;
 			lifeText.text = playerLife.ToString();
 			Destroy (col.gameObject);
