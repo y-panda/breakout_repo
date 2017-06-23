@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Ball : MonoBehaviour {
 	
 	public GameObject gameClear;
-	float maxSpeed = 4f;
+	float maxSpeed = 6f;
 	public int blockCt = 20;
 	Rigidbody rb;
 	Vector3 ballVelocity;
@@ -23,8 +23,8 @@ public class Ball : MonoBehaviour {
 	GameObject lightParent;
 	GameObject racket;
 	public GameObject burstPrefab;
-	AudioSource sound01;
-
+	AudioSource burnSound;
+	AudioSource barSound;
 
 	void Start(){
 		//racket = GameObject.Find ("Racket");
@@ -35,7 +35,10 @@ public class Ball : MonoBehaviour {
 		lightParent.transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
 		lightParent.transform.FindChild ("SearchLight").gameObject.GetComponent<Light> ().spotAngle = 21;
 
-		sound01 = gameObject.GetComponent<AudioSource> ();
+		AudioSource[] audiosouces = gameObject.GetComponents<AudioSource> ();
+		burnSound = audiosouces [0];
+		barSound = audiosouces[1];
+		//barSound.time = 0.2f;
 
 		rb = GetComponent<Rigidbody>();
 		ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
@@ -63,19 +66,6 @@ public class Ball : MonoBehaviour {
 
 		//速度を正規化
 		GetComponent<Rigidbody> ().velocity = GetComponent<Rigidbody> ().velocity.normalized * maxSpeed;
-
-		//ブロックを全て壊した時
-		if (blockCt == 0) {
-			//ボールの動きを止める
-			GetComponent<Rigidbody> ().velocity = Vector3.zero;
-			//GameClearScriptのWinメソッドを実行しGameClearの文字を表示
-			gameClear.SendMessage ("Win");
-			//クリックしてタイトル画面へ
-			if (Input.GetMouseButtonDown (0)) {
-				SceneManager.LoadScene("title");
-			}
-		}
-
 	}
 
 
@@ -89,11 +79,12 @@ public class Ball : MonoBehaviour {
 	void OnCollisionEnter (Collision col){
 		//ブロックにぶつかるとブロックカウント-1
 		if (col.gameObject.tag == "Block") {
-			sound01.PlayOneShot(sound01.clip);
+			burnSound.PlayOneShot(burnSound.clip);
 			//砂煙を発生
 			Instantiate (burstPrefab, col.gameObject.transform.position, Quaternion.identity);
 
 		} else if (col.gameObject.tag == "Racket") {
+			barSound.PlayOneShot (barSound.clip);
 			Debug.Log (ballVelocity);
 			if (Mathf.Abs (ballVelocity.x) < 1.0f) {
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
@@ -120,9 +111,9 @@ public class Ball : MonoBehaviour {
 				Debug.Log (">>>速度調整します");
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
 				if (ballVelocity.y >= 0f) {
-					ballVelocity.y += 2.0f;
+					ballVelocity.y += 1.0f;
 				} else {
-					ballVelocity.y -= 2.0f;
+					ballVelocity.y -= 1.0f;
 				}
 
 				ballVelocity.y *= 5.0f;
