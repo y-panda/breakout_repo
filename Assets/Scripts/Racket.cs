@@ -17,20 +17,15 @@ public class Racket : MonoBehaviour {
 	void Start () {
 		moveModeIs = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+
+	void Update () {		
 		if (!moveModeIs) {
 			slider.value = sliderValue;
 		}
 		pos = gameObject.transform.position;
 		pos.x = slider.value;
 		gameObject.transform.position = pos;
-		/*gameObject.transform.position =
-			new Vector3(slider.value, gameObject.transform.position.y, gameObject.transform.position.z);
-		*/
-
 	}
 
 	//スライダーの固定位置を決定する

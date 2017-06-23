@@ -18,15 +18,6 @@ public class TransformScreenToWorld : MonoBehaviour {
 	public GameObject shootObject; //発射する玉
 
 
-	void Start () {
-		//Debug.Log ("orthoObjectから見たshootObject座標"+shootObject.transform.position); 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
-
 	//発射ベクトル計算
 	public Vector3 CalcShootVec(GameObject tamaObj){
 		orthoCamera = gameObject.GetComponent<Camera> ();

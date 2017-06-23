@@ -5,29 +5,27 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
-	
-	public GameObject gameClear;
+
+	// ボールの運動
 	float maxSpeed = 6f;
-	public int blockCt = 20;
 	Rigidbody rb;
 	Vector3 ballVelocity;
 
-
-	public float baseWidth = 2160f;
-	public float baseHeight = 3840f;
-	Vector3 shootVec;
-
+	// 発射角度決定に必要なパラメータ
 	GameObject orthoObject;
 	bool shootIdlingIs = true;
-
+	Vector3 shootVec;
 	GameObject lightParent;
+
 	GameObject racket;
 	public GameObject burstPrefab;
+
+	// サウンド関係
 	AudioSource burnSound;
 	AudioSource barSound;
 
 	void Start(){
-		//racket = GameObject.Find ("Racket");
+		
 		racket = GameObject.Find ("bar");
 		orthoObject = GameObject.Find ("GameObject");
 		// サーチライトの電気をつける
@@ -38,7 +36,6 @@ public class Ball : MonoBehaviour {
 		AudioSource[] audiosouces = gameObject.GetComponents<AudioSource> ();
 		burnSound = audiosouces [0];
 		barSound = audiosouces[1];
-		//barSound.time = 0.2f;
 
 		rb = GetComponent<Rigidbody>();
 		ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
@@ -48,14 +45,14 @@ public class Ball : MonoBehaviour {
 
 	void Update ()	{
 		//タッチしてる間、角度計算する
-		if (Input.GetMouseButton (0)&&shootIdlingIs) {
+		if (shootIdlingIs&&Input.GetMouseButton (0)) {
 			racket.GetComponent<Racket> ().moveModeIs = false;
 			//発射角度を計算
 			shootVec = orthoObject.GetComponent<TransformScreenToWorld> ().CalcShootVec (gameObject);
-
 		}
+
 		//指離したら発射
-		if (Input.GetMouseButtonUp (0)&&shootIdlingIs&&shootVec.y>0f) {
+		if (shootIdlingIs&&Input.GetMouseButtonUp (0)&&shootVec.y>0f) {
 			shootIdlingIs = false;
 			racket.GetComponent<Racket> ().moveModeIs = true; //ラケットの操作可能にする
 			//サーチライトを消す
@@ -68,16 +65,15 @@ public class Ball : MonoBehaviour {
 		GetComponent<Rigidbody> ().velocity = GetComponent<Rigidbody> ().velocity.normalized * maxSpeed;
 	}
 
-
+	//指定した角度に発射
 	void BallShoot(){
 		rb.AddForce((shootVec) * (1f), ForceMode.VelocityChange);
-		//rb.AddForce((transform.right) * (1f), ForceMode.VelocityChange);
 	}
 
 
 
 	void OnCollisionEnter (Collision col){
-		//ブロックにぶつかるとブロックカウント-1
+		
 		if (col.gameObject.tag == "Block") {
 			burnSound.PlayOneShot(burnSound.clip);
 			//砂煙を発生
@@ -88,12 +84,10 @@ public class Ball : MonoBehaviour {
 			Debug.Log (ballVelocity);
 			if (Mathf.Abs (ballVelocity.x) < 1.0f) {
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
-				if (ballVelocity.x >= 0f) {
+				if (ballVelocity.x == 0f) {
 					ballVelocity.x += 1.0f;
-				} else {
-					ballVelocity.y -= 1.0f;
 				}
-				ballVelocity.x *= 2.0f;
+				ballVelocity.x *= 2.5f;
 				GetComponent<Rigidbody> ().velocity = ballVelocity;
 			}
 			if (Mathf.Abs (ballVelocity.y) < 1.5f) {
@@ -110,10 +104,8 @@ public class Ball : MonoBehaviour {
 			if (Mathf.Abs (ballVelocity.y) < 40.0f) {
 				Debug.Log (">>>速度調整します");
 				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
-				if (ballVelocity.y >= 0f) {
+				if (ballVelocity.y == 0f) {
 					ballVelocity.y += 1.0f;
-				} else {
-					ballVelocity.y -= 1.0f;
 				}
 
 				ballVelocity.y *= 5.0f;

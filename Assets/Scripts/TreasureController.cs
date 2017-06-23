@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class TreasureController : MonoBehaviour {
 
+	public GameObject gameDirector;
 
-	void Start () {
-		
-	}
-	
 	void Update () {
 		transform.Rotate(new Vector3(0, 0.5f, 0));
 	}
@@ -16,6 +13,7 @@ public class TreasureController : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 		if(col.gameObject.tag == "Ball"){
 			Destroy(gameObject);
+			gameDirector.GetComponent<GameDirector> ().GameClear ();
 		}
 	}
 }

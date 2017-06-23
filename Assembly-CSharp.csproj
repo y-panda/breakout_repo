@@ -53,7 +53,7 @@
      <Compile Include="Assets\Scripts\GameDirector.cs" />
      <Compile Include="Assets\Scripts\ParticleManager.cs" />
      <Compile Include="Assets\Scripts\Racket.cs" />
-     <Compile Include="Assets\Scripts\SceneLoadScript.cs" />
+     <Compile Include="Assets\Scripts\TitleManager.cs" />
      <Compile Include="Assets\Scripts\TransformScreenToWorld.cs" />
      <Compile Include="Assets\Scripts\TreasureController.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

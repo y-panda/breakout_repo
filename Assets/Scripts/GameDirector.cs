@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameDirector : MonoBehaviour {
 
 	bool gamePlayingIs = true;
-	float countTime = 180.0f; //制限時間
+	float countTime = 100.0f; //制限時間
 
 	public Text timerText;
 	public Text lifeText;
@@ -16,7 +16,6 @@ public class GameDirector : MonoBehaviour {
 	public Text gameScoreText;
 	public GameObject ClearPanel;
 	public GameObject ClearTreasure;
-
 
 	[System.NonSerialized]
 	public int playerLife=5;
@@ -85,10 +84,8 @@ public class GameDirector : MonoBehaviour {
 	// ボールが1番下の床に当たったときの処理
 	void OnCollisionEnter (Collision col){
 		if (col.gameObject.tag == "Ball") {
-			//Debug.Log ("playerLife:"+playerLife);
 			playerLife--;
 			lifeText.text = playerLife.ToString();
-			//SceneManager.LoadScene("stage1");
 			Destroy (col.gameObject);
 			GameStart ();
 		}
