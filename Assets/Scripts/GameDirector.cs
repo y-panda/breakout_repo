@@ -87,7 +87,7 @@ public class GameDirector : MonoBehaviour {
 		if (col.gameObject.tag == "Ball") {
 			countTime -= 15;
 			playerLife--;
-			lifeText.text = playerLife.ToString();
+			lifeText.text = "残り"+playerLife.ToString()+"回";
 			Destroy (col.gameObject);
 			GameStart ();
 		}
