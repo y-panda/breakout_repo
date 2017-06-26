@@ -35,7 +35,7 @@ public class Racket : MonoBehaviour {
 			}
 
 			//y軸とz軸は固定
-			WorldPointPos.y = -4.5f;
+			WorldPointPos.y = -4.9f;
 			WorldPointPos.z = 1.21f;
 
 			// ワールド座標をPlayer位置へ変換
