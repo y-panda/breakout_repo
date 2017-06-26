@@ -23,7 +23,7 @@ public class BlockController : MonoBehaviour {
 				Destroy (gameObject);
 				break;
 			case 1:
-				gameObject.transform.localScale = new Vector3 (blockScale.x/1.8f, blockScale.y, blockScale.z/1.8f);
+				gameObject.transform.localScale = new Vector3 (blockScale.x/1.8f, blockScale.y/1.8f, blockScale.z/1.8f);
 				break;
 			default:
 				break;
