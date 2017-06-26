@@ -50,11 +50,6 @@ public class TransformScreenToWorld : MonoBehaviour {
 		Vector3 worldPos = orthoCamera.ScreenToWorldPoint(screenPos);
 		//Debug.Log ("orthoObjectから見た目標座標(worldPos): "+worldPos);
 
-		//orthoObject.transform.position = worldPos; //目印移動
-		//Debug.Log ("-----"+gameObject.transform.position);
-	
-		//shootVec.z = worldPos.z; //1.2
-		Debug.Log("~~~~~~~~~"+worldPos);
 		return worldPos;
 	}
 
