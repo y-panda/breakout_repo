@@ -43,7 +43,7 @@ public class GameDirector : MonoBehaviour {
 		racket.GetComponent<Racket> ().SetPos (); //初期位置に固定
 
 		newBallPos = racket.transform.position;
-		newBallPos.y += 0.3f; // ラケットの少し上にボールの座標を設定
+		newBallPos.y += 0.05f; // ラケットの少し上にボールの座標を設定
 		newBallPos.z = 1.2f; 
 		Instantiate(ballPref, newBallPos, Quaternion.identity);//ボールを生成
 	}
