@@ -54,11 +54,14 @@ public class Ball : MonoBehaviour {
 		//指離したら発射
 		if (shootIdlingIs&&Input.GetMouseButtonUp (0)&&shootVec.y>0f) {
 			shootIdlingIs = false;
-			racket.GetComponent<Racket> ().moveModeIs = true; //ラケットの操作可能にする
 			//サーチライトを消す
 			lightParent.transform.FindChild ("SearchLight").gameObject.GetComponent<Light> ().spotAngle = 0;
 
-			BallShoot ();				
+			BallShoot ();
+		}
+		// 発射後に画面に触ったとき、ラケットが操作可能状態になる
+		if (!shootIdlingIs&&Input.GetMouseButton (0)) {
+			racket.GetComponent<Racket> ().moveModeIs = true; //ラケットの操作可能にする
 		}
 
 		//速度を正規化

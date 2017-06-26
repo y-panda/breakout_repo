@@ -53,9 +53,8 @@ public class GameDirector : MonoBehaviour {
 		if (gamePlayingIs) {
 			countTime -= Time.deltaTime; 
 			timerText.text = countTime.ToString("F1");	
-
 			if (countTime<=0f) { //時間切れ
-				GameOver ();
+				//GameOver ();
 			}
 		}
 
@@ -69,7 +68,7 @@ public class GameDirector : MonoBehaviour {
 		ClearPanel.SetActive (true);
 		ClearTreasure.SetActive (true);
 		gameResultText.text = "宝石獲得！クリア！";
-		gameScoreText.text = "スコア:" + (countTime * 10f).ToString ("F0");
+		gameScoreText.text = "スコア:" + (countTime * 10f+playerLife*100).ToString ("F0");
 	}
 
 	public void GameOver(){
