@@ -13,11 +13,9 @@ public class Racket : MonoBehaviour {
 	float startPos = 0f;
 
 	public bool moveModeIs;
-
 	public GameObject orthoObject;
 
 
-	// Use this for initialization
 	void Start () {
 		moveModeIs = false;
 	}
