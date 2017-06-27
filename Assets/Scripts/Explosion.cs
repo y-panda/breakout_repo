@@ -15,9 +15,8 @@ public class Explosion : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider col) {
-		if (explodedIs && col.tag == "Block") {
-			if (!myList.Contains (col.name)) {
-				Debug.Log (col);
+		if (explodedIs && (col.tag == "Block"||col.tag == "Ball")) {
+			if (col.tag == "Block"&&!myList.Contains (col.name)) {
 				myList.Add (col.name);
 				col.gameObject.transform.localScale = new Vector3 (col.gameObject.transform.localScale.x / 2f, col.gameObject.transform.localScale.y / 2f, col.gameObject.transform.localScale.z / 2f);
 				rb = col.gameObject.GetComponent<Rigidbody> ();
