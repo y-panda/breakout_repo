@@ -76,8 +76,60 @@ public class Ball : MonoBehaviour {
 
 
 	void OnCollisionEnter (Collision col){
-		
-		if (col.gameObject.tag == "Block"||col.gameObject.tag == "Hard2Block") {
+		switch (col.gameObject.tag) {
+		case "Block":
+			burnSound.PlayOneShot (burnSound.clip);
+			//砂煙を発生
+			Instantiate (burstPrefab, col.gameObject.transform.position, Quaternion.identity);
+			break;
+
+		case "Hard2Block":
+			burnSound.PlayOneShot (burnSound.clip);
+			//砂煙を発生
+			Instantiate (burstPrefab, col.gameObject.transform.position, Quaternion.identity);
+			break;
+
+		case "Racket":
+			barSound.PlayOneShot (barSound.clip);
+			Debug.Log (ballVelocity);
+			if (Mathf.Abs (ballVelocity.x) < 1.0f) {
+				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
+				if (ballVelocity.x == 0f) {
+					ballVelocity.x += 1.0f;
+				}
+				ballVelocity.x *= 2.5f;
+				GetComponent<Rigidbody> ().velocity = ballVelocity;
+			}
+			if (Mathf.Abs (ballVelocity.y) < 1.5f) {
+				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
+				ballVelocity.y += 1.0f;
+				ballVelocity.y *= 5.0f;
+				GetComponent<Rigidbody> ().velocity = ballVelocity;
+			}
+			break;
+
+		case "SideWall":
+			if (Mathf.Abs (ballVelocity.y) < 40.0f) {
+				//Debug.Log (">>>速度調整します");
+				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
+				if (ballVelocity.y == 0f) {
+					ballVelocity.y += 1.0f;
+				}
+				ballVelocity.y *= 5.0f;
+				GetComponent<Rigidbody> ().velocity = ballVelocity;
+			}
+			break;
+
+		case "Treasure":
+			Destroy (gameObject);
+			break;
+
+		default:
+			break;
+		}
+			
+
+		/*if (col.gameObject.tag == "Block"||col.gameObject.tag == "Hard2Block") {
 			burnSound.PlayOneShot(burnSound.clip);
 			//砂煙を発生
 			Instantiate (burstPrefab, col.gameObject.transform.position, Quaternion.identity);
@@ -117,7 +169,7 @@ public class Ball : MonoBehaviour {
 			}
 		} else if (col.gameObject.tag == "Treasure") {
 			Destroy (gameObject);
-		}
+		}*/
 
 	}
 
