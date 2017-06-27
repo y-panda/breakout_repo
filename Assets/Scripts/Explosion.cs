@@ -7,14 +7,21 @@ using UnityEngine.UI;
 public class Explosion : MonoBehaviour {
 
 	private List<string> myList = new List<string>();
+	public bool explodedIs;
+
+	void Start(){
+		explodedIs = false;
+	}
 
 	void OnTriggerStay(Collider col) {
-		if (col.tag == "Block") {
+		if (explodedIs && col.tag == "Block") {
 			if (!myList.Contains (col.name)) {
 				Debug.Log (col);
 				myList.Add (col.name);
 				col.gameObject.transform.localScale = new Vector3 (col.gameObject.transform.localScale.x / 2f, col.gameObject.transform.localScale.y / 2f, col.gameObject.transform.localScale.z / 2f);
-			} 
+			} else {
+				Destroy (gameObject);
+			}
 		}
 	}
 }

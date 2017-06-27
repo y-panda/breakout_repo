@@ -19,6 +19,7 @@ public class Ball : MonoBehaviour {
 
 	GameObject racket;
 	public GameObject burstPrefab;
+	public GameObject bombPrefab;
 
 	// サウンド関係
 	AudioSource burnSound;
@@ -87,6 +88,14 @@ public class Ball : MonoBehaviour {
 			burnSound.PlayOneShot (burnSound.clip);
 			//砂煙を発生
 			Instantiate (burstPrefab, col.gameObject.transform.position, Quaternion.identity);
+			break;
+
+		case "Bomb":
+			//burnSound.PlayOneShot (burnSound.clip);
+			Debug.Log ("爆弾に当たった");
+			col.gameObject.GetComponent<Explosion> ().explodedIs = true;
+			Instantiate (bombPrefab, col.gameObject.transform.position, Quaternion.identity);
+
 			break;
 
 		case "Racket":
