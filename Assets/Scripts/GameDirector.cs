@@ -52,7 +52,7 @@ public class GameDirector : MonoBehaviour {
 		//スタートしてからの秒数
 		if (gamePlayingIs) {
 			countTime -= Time.deltaTime; 
-			timerText.text = countTime.ToString("F1");	
+			timerText.text = countTime.ToString("F0");	
 			if (countTime<=0f) { //時間切れ
 				//GameOver ();
 			}
