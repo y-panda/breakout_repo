@@ -28,7 +28,7 @@ public class Ball : MonoBehaviour {
 	void Start(){
 		
 		racket = GameObject.Find ("bar");
-		orthoObject = GameObject.Find ("GameObject");
+		orthoObject = GameObject.Find ("CameraGameObject");
 		// サーチライトの電気をつける
 		lightParent = GameObject.Find ("LightParent");
 		lightParent.transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
@@ -138,47 +138,6 @@ public class Ball : MonoBehaviour {
 		}
 			
 
-		/*if (col.gameObject.tag == "Block"||col.gameObject.tag == "Hard2Block") {
-			burnSound.PlayOneShot(burnSound.clip);
-			//砂煙を発生
-			Instantiate (burstPrefab, col.gameObject.transform.position, Quaternion.identity);
-
-		} else if (col.gameObject.tag == "Racket") {
-			barSound.PlayOneShot (barSound.clip);
-			Debug.Log (ballVelocity);
-			if (Mathf.Abs (ballVelocity.x) < 1.0f) {
-				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
-				if (ballVelocity.x == 0f) {
-					ballVelocity.x += 1.0f;
-				}
-				ballVelocity.x *= 2.5f;
-				GetComponent<Rigidbody> ().velocity = ballVelocity;
-			}
-			if (Mathf.Abs (ballVelocity.y) < 1.5f) {
-				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
-				ballVelocity.y += 1.0f;
-				ballVelocity.y *= 5.0f;
-				GetComponent<Rigidbody> ().velocity = ballVelocity;
-			}
-
-		} else if (col.gameObject.tag == "SideWall") {
-			//Debug.Log (">>>壁に当たった！");
-			//Debug.Log (ballVelocity);
-			//壁に当たったときに上下に対する速度が遅すぎるとき
-			if (Mathf.Abs (ballVelocity.y) < 40.0f) {
-				//Debug.Log (">>>速度調整します");
-				ballVelocity = gameObject.GetComponent<Rigidbody> ().velocity;
-				if (ballVelocity.y == 0f) {
-					ballVelocity.y += 1.0f;
-				}
-
-				ballVelocity.y *= 5.0f;
-				GetComponent<Rigidbody> ().velocity = ballVelocity;
-				//Debug.Log (">>>"+ballVelocity);
-			}
-		} else if (col.gameObject.tag == "Treasure") {
-			Destroy (gameObject);
-		}*/
 
 	}
 

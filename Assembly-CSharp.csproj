@@ -46,8 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GemExample\Scripts\DemoTimeOfDay.cs" />
-     <Compile Include="Assets\GemExample\Scripts\Orbit.cs" />
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\BlockController.cs" />
      <Compile Include="Assets\Scripts\Explosion.cs" />

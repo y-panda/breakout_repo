@@ -8,6 +8,7 @@ public class Explosion : MonoBehaviour {
 
 	private List<string> myList = new List<string>();
 	public bool explodedIs;
+	Rigidbody rb;
 
 	void Start(){
 		explodedIs = false;
@@ -19,6 +20,8 @@ public class Explosion : MonoBehaviour {
 				Debug.Log (col);
 				myList.Add (col.name);
 				col.gameObject.transform.localScale = new Vector3 (col.gameObject.transform.localScale.x / 2f, col.gameObject.transform.localScale.y / 2f, col.gameObject.transform.localScale.z / 2f);
+				rb = col.gameObject.GetComponent<Rigidbody> ();
+				rb.mass = rb.mass / 100f;
 			} else {
 				Destroy (gameObject);
 			}
