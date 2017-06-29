@@ -62,13 +62,34 @@ public class GameDirector : MonoBehaviour {
 
 
 	public void GameClear(){
+		// クリア時の処理
 		bgmSound.Stop ();
 		clearSound.PlayOneShot (clearSound.clip);
 		gamePlayingIs = false;
 		ClearPanel.SetActive (true);
 		ClearTreasure.SetActive (true);
+
+		// スコア関係
+		CalcScore();
+	}
+
+	public void CalcScore(){
 		gameResultText.text = "宝石獲得！クリア！";
-		gameScoreText.text = "スコア:" + (countTime * 10f+playerLife*100).ToString ("F0");
+		int score;
+		int highScore;
+
+		score = (int)countTime * 10 + playerLife * 100;
+		highScore = PlayerPrefs.GetInt ("HighScore");
+
+		if (highScore< score) {
+			gameResultText.text += "\nハイスコア!:" + (score).ToString ("F0");
+			PlayerPrefs.SetInt ("HighScore", score);
+		} else {
+			gameResultText.text = "\nスコア:" + (score).ToString ("F0");
+		}
+		gameScoreText.text = "~現在のハイスコア~\n" + (highScore).ToString ("F0");
+
+
 	}
 
 	public void GameOver(){
