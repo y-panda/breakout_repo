@@ -48,11 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\BlockController.cs" />
+     <Compile Include="Assets\Scripts\ButtonManager.cs" />
      <Compile Include="Assets\Scripts\Explosion.cs" />
      <Compile Include="Assets\Scripts\GameDirector.cs" />
      <Compile Include="Assets\Scripts\ParticleManager.cs" />
      <Compile Include="Assets\Scripts\Racket.cs" />
-     <Compile Include="Assets\Scripts\TitleManager.cs" />
      <Compile Include="Assets\Scripts\TransformScreenToWorld.cs" />
      <Compile Include="Assets\Scripts\TreasureController.cs" />
      <None Include="Assets\Gem\Shaders\Gem.shader" />
