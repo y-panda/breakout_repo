@@ -75,15 +75,22 @@ public class GameDirector : MonoBehaviour {
 
 	public void CalcScore(){
 		gameResultText.text = "宝石獲得！クリア！";
+		string sceneName; //現在のシーン名
+		string highScoreKey;
+
 		int score;
 		int highScore;
 
+		sceneName = SceneManager.GetActiveScene().name;
+		highScoreKey = sceneName + "HighScore"; //現在のシーン名が含まれたkey名作成
+
 		score = (int)countTime * 10 + playerLife * 100;
-		highScore = PlayerPrefs.GetInt ("HighScore");
+		highScore = PlayerPrefs.GetInt (highScoreKey);
 
 		if (highScore< score) {
 			gameResultText.text += "\nハイスコア!:" + (score).ToString ("F0");
-			PlayerPrefs.SetInt ("HighScore", score);
+			highScore = score;
+			PlayerPrefs.SetInt (highScoreKey, highScore);
 		} else {
 			gameResultText.text = "\nスコア:" + (score).ToString ("F0");
 		}
