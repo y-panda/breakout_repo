@@ -24,6 +24,7 @@ public class Ball : MonoBehaviour {
 	// サウンド関係
 	AudioSource burnSound;
 	AudioSource barSound;
+	AudioSource explosionSound;
 
 	void Start(){
 		
@@ -37,6 +38,7 @@ public class Ball : MonoBehaviour {
 		AudioSource[] audiosouces = gameObject.GetComponents<AudioSource> ();
 		burnSound = audiosouces [0];
 		barSound = audiosouces[1];
+		explosionSound = audiosouces[2];
 
 		rb = GetComponent<Rigidbody>();
 		ballVelocity = gameObject.GetComponent<Rigidbody>().velocity;
@@ -91,7 +93,7 @@ public class Ball : MonoBehaviour {
 			break;
 
 		case "Bomb":
-			//burnSound.PlayOneShot (burnSound.clip);
+			explosionSound.PlayOneShot (explosionSound.clip);
 			Debug.Log ("爆弾に当たった");
 			col.gameObject.GetComponent<Explosion> ().explodedIs = true;
 			Instantiate (bombPrefab, col.gameObject.transform.position, Quaternion.identity);
