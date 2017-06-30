@@ -92,7 +92,6 @@ public class GameDirector : MonoBehaviour {
 		sceneName = SceneManager.GetActiveScene().name;
 		highScoreKey = sceneName + "HighScore"; //現在のシーン名が含まれたkey名作成
 
-		//Debug.Log ("highScoreKey:"+highScoreKey);
 		score = (int)countTime * 10 + playerLife * 100;
 		PlayerPrefs.SetString (sceneName+"Score", score.ToString()); //今のステージのスコアを記録
 
@@ -115,11 +114,7 @@ public class GameDirector : MonoBehaviour {
 		racket.GetComponent<Racket> ().moveModeIs=false; //バーを固定
 		SceneManager.LoadScene("GameOver");
 	}
-
-
-	public void GoNextStage(){
-		SceneManager.LoadScene("stage1");
-	}
+		
 
 	// ボールが1番下の床に当たったときの処理
 	void OnCollisionEnter (Collision col){
