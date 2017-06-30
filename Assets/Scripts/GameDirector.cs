@@ -91,10 +91,13 @@ public class GameDirector : MonoBehaviour {
 		sceneName = SceneManager.GetActiveScene().name;
 		highScoreKey = sceneName + "HighScore"; //現在のシーン名が含まれたkey名作成
 
+		//Debug.Log ("highScoreKey:"+highScoreKey);
 		score = (int)countTime * 10 + playerLife * 100;
-		highScore = PlayerPrefs.GetInt (highScoreKey);
+		PlayerPrefs.SetString (sceneName+"Score", score.ToString()); //今のステージのスコアを記録
 
-		if (highScore< score) {
+		highScore = PlayerPrefs.GetInt (highScoreKey);
+		// ハイスコアを更新するかどうか
+		if (highScore< score) { //更新
 			gameResultText.text += "\nハイスコア!:" + (score).ToString ("F0");
 			highScore = score;
 			PlayerPrefs.SetInt (highScoreKey, highScore);
