@@ -112,7 +112,8 @@ public class GameDirector : MonoBehaviour {
 	public void GameOver(){
 		gamePlayingIs = false;
 		racket.GetComponent<Racket> ().moveModeIs=false; //バーを固定
-		gameResultText.text = "ゲームオーバー…";
+		//gameResultText.text = "ゲームオーバー…";
+		SceneManager.LoadScene("GameOver");
 	}
 
 
