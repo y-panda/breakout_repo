@@ -5,12 +5,9 @@ using UnityEngine;
 public class ParticleManager : MonoBehaviour {
 
 	ParticleSystem particle;
-
-
 	void Start () {
 		particle = GetComponent<ParticleSystem>();
 	}
-	
 
 	void Update () {
 		// パーティクルの再生が終了したらGameObjectを削除

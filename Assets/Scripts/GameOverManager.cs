@@ -9,7 +9,6 @@ public class GameOverManager : MonoBehaviour {
 	string scoreKey;
 	string scores;
 
-	// Use this for initialization
 	void Start () {
 		//各ステージのスコアを読み込む
 		for (int i = 0; i < 5; i++) {
@@ -18,6 +17,5 @@ public class GameOverManager : MonoBehaviour {
 		}
 		gameScoresText.text = scores;
 	}
-	
 
 }

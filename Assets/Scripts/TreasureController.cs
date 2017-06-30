@@ -7,7 +7,6 @@ public class TreasureController : MonoBehaviour {
 	public GameObject gameDirector;
 
 	void Update () {
-		//transform.Rotate(new Vector3(0, 0.3f, 0));
 		transform.Rotate(new Vector3(0, 0.2f, 0f));
 	}
 

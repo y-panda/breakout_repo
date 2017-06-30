@@ -15,6 +15,7 @@ public class ButtonManager : MonoBehaviour {
 				scoreKey = "stage" + i.ToString() + "Score";
 				PlayerPrefs.SetString (scoreKey, "獲得なし");
 			}
+			// HPを設定
 			PlayerPrefs.SetInt ("PlayerHP", 5);
 		}
 		SceneManager.LoadScene("stage"+stageNo);

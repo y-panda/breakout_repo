@@ -9,9 +9,6 @@ public class Racket : MonoBehaviour {
 	private Vector3 pos;
 	private Vector3 WorldPointPos;
 
-	public Slider slider;
-	float startPos = 0f;
-
 	public bool moveModeIs;
 	public GameObject orthoObject;
 
@@ -19,8 +16,7 @@ public class Racket : MonoBehaviour {
 	void Start () {
 		moveModeIs = false;
 	}
-
-
+		
 	void Update () {		
 		if (moveModeIs) {
 			WorldPointPos = orthoObject.GetComponent<TransformScreenToWorld> ().CalcCarPos (gameObject);
@@ -38,14 +34,6 @@ public class Racket : MonoBehaviour {
 
 			// ワールド座標をPlayer位置へ変換
 			gameObject.transform.position = WorldPointPos;
-			//gameObject.transform.position = pos;
 		}
-
-
-	}
-
-	//スライダーの固定位置を決定する
-	public void SetPos(){
-		startPos = gameObject.transform.position.x;
 	}
 }

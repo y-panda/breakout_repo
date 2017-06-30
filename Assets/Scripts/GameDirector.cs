@@ -46,7 +46,6 @@ public class GameDirector : MonoBehaviour {
 	//ゲーム開始
 	void GameStart(){
 		racket.GetComponent<Racket> ().moveModeIs=false; //バーを固定
-		racket.GetComponent<Racket> ().SetPos (); //初期位置に固定
 
 		newBallPos = racket.transform.position;
 		newBallPos.y += 0.05f; // ラケットの少し上にボールの座標を設定
