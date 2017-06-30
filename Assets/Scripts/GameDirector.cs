@@ -18,7 +18,7 @@ public class GameDirector : MonoBehaviour {
 	public GameObject ClearTreasure;
 
 	[System.NonSerialized]
-	public int playerLife=5;
+	public int playerLife;
 
 	public GameObject ballPref;
 	public GameObject racket;
@@ -30,6 +30,12 @@ public class GameDirector : MonoBehaviour {
 
 
 	void Start () {
+		playerLife = PlayerPrefs.GetInt ("PlayerHP");
+		Debug.Log ("playerLife:"+playerLife);
+		if (playerLife<=0) {
+			playerLife = 5;
+		}
+		lifeText.text = "残り"+playerLife.ToString()+"回";
 		AudioSource[] audioSources = gameObject.GetComponents<AudioSource> ();
 		clearSound = audioSources[0];
 		bgmSound = audioSources [1];
@@ -71,6 +77,7 @@ public class GameDirector : MonoBehaviour {
 
 		// スコア関係
 		CalcScore();
+		PlayerPrefs.SetInt ("PlayerHP", playerLife);
 	}
 
 	public void CalcScore(){

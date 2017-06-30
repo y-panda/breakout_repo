@@ -7,6 +7,9 @@ public class ButtonManager : MonoBehaviour {
 
 
 	public void OnStageLoad(string stageNo){
+		if (stageNo=="0") {
+			PlayerPrefs.SetInt ("PlayerHP", 5);
+		}
 		SceneManager.LoadScene("stage"+stageNo);
 	}
 
