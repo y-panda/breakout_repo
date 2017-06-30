@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour {
 
+	public void OnTitleLoad(){
+		SceneManager.LoadScene("title");
+	}
+
+	public void OnHowToPlayLoad(){
+		SceneManager.LoadScene("HowToPlay");
+	}
+
 
 	public void OnStageLoad(string stageNo){
 		//タイトル画面から呼び出されたときの処理
@@ -21,5 +29,7 @@ public class ButtonManager : MonoBehaviour {
 		SceneManager.LoadScene("stage"+stageNo);
 	}
 
-
+	public void OnGameOverLoad(){
+		SceneManager.LoadScene("GameOver");
+	}
 }
