@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameDirector : MonoBehaviour {
 
 	bool gamePlayingIs = true;
-	float countTime = 100.0f; //制限時間
+	float countTime = 120.0f; //制限時間
 
 	public Text timerText;
 	public Text lifeText;
