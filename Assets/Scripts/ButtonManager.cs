@@ -13,7 +13,7 @@ public class ButtonManager : MonoBehaviour {
 			//各ステージのスコアを初期化
 			for (int i = 0; i < 5; i++) {
 				scoreKey = "stage" + i.ToString() + "Score";
-				PlayerPrefs.SetString (scoreKey, "未探検");
+				PlayerPrefs.SetString (scoreKey, "獲得なし");
 			}
 			PlayerPrefs.SetInt ("PlayerHP", 5);
 		}

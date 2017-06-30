@@ -60,7 +60,7 @@ public class GameDirector : MonoBehaviour {
 			countTime -= Time.deltaTime; 
 			timerText.text = countTime.ToString("F0");	
 			if (countTime<=0f) { //時間切れ
-				//GameOver ();
+				GameOver ();
 			}
 		}
 
@@ -72,6 +72,7 @@ public class GameDirector : MonoBehaviour {
 		bgmSound.Stop ();
 		clearSound.PlayOneShot (clearSound.clip);
 		gamePlayingIs = false;
+		racket.GetComponent<Racket> ().moveModeIs=false; //バーを固定
 		ClearPanel.SetActive (true);
 		ClearTreasure.SetActive (true);
 
@@ -112,7 +113,6 @@ public class GameDirector : MonoBehaviour {
 	public void GameOver(){
 		gamePlayingIs = false;
 		racket.GetComponent<Racket> ().moveModeIs=false; //バーを固定
-		//gameResultText.text = "ゲームオーバー…";
 		SceneManager.LoadScene("GameOver");
 	}
 
@@ -124,11 +124,17 @@ public class GameDirector : MonoBehaviour {
 	// ボールが1番下の床に当たったときの処理
 	void OnCollisionEnter (Collision col){
 		if (col.gameObject.tag == "Ball") {
+			Destroy (col.gameObject);
 			countTime -= 15;
 			playerLife--;
-			lifeText.text = "残り"+playerLife.ToString()+"回";
-			Destroy (col.gameObject);
-			GameStart ();
+
+			if (countTime <= 0 || playerLife == 0) {
+				GameOver ();
+			} else {
+				lifeText.text = "残り"+playerLife.ToString()+"回";
+				GameStart ();
+			}
+
 		}
 	}
 }
